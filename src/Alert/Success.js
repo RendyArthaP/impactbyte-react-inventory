@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Success = () => {
   return (
     <Alert variant="success">
-      <Alert>Hey, thanks for registration</Alert>
+      Hey, thanks for registration
     </Alert>
   )
 }

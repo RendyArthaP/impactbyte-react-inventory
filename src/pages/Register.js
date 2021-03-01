@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Success from '../Alert/Success';
+import Error from '../Alert/Error';
 
 const Register = () => {
   const history = useHistory()
@@ -13,6 +14,7 @@ const Register = () => {
     password: ""
   })
   const [successAlert, setSuccessAlert] = useState(false)
+  const [errorAlert, setErrorAlert] = useState(false)
   const [listUserRegister, setListUserRegister] = useState([])
 
   const handleChange = (e) => {
@@ -25,15 +27,22 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log()
     const url = "https://6023a95a6bf3e6001766b546.mockapi.io/datauser"
     axios.post(url, {...userRegister})
       .then(result => {
-        setListUserRegister([...listUserRegister, result.data])
-        setSuccessAlert(true)
-        setTimeout(() => {
-          history.push("/")
-        }, 1000);
+        if(userRegister.name === "" || userRegister.email === "" || userRegister.password === "") {
+          setErrorAlert(true)
+        } else if(userRegister.name.length < 5) {
+          setErrorAlert(true)
+        } else if(userRegister.password.length < 8) {
+          setErrorAlert(true)
+        } else {
+          setListUserRegister([...listUserRegister, result.data])
+          setSuccessAlert(true)
+          setTimeout(() => {
+            history.push("/")
+          }, 1000);
+        }
       })
       .catch(err => console.log(err))
   }
@@ -43,6 +52,7 @@ const Register = () => {
         <Col>
           <h1>Inventory - Form Register</h1>
           {successAlert && <Success />}
+          {errorAlert && <Error />}
           <FormGroup>
             <FormLabel>Name</FormLabel>
             <FormControl 
