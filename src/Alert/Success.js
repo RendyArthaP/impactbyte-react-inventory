@@ -2,10 +2,10 @@ import React from 'react'
 import {Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Success = () => {
+const Success = ({successContent}) => {
   return (
     <Alert variant="success">
-      Hey, thanks for registration
+      {successContent}
     </Alert>
   )
 }

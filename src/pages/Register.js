@@ -15,7 +15,8 @@ const Register = () => {
   })
   const [successAlert, setSuccessAlert] = useState(false)
   const [errorAlert, setErrorAlert] = useState(false)
-  const [alertContet, setAlertContent] = useState("")
+  const [errorContent, setErrorContent] = useState("")
+  const [successContent, setSuccessContent] = useState("")
   const [listUserRegister, setListUserRegister] = useState([])
 
   const handleChange = (e) => {
@@ -31,18 +32,19 @@ const Register = () => {
     const url = "https://6023a95a6bf3e6001766b546.mockapi.io/datauser"
     if(userRegister.name === "" || userRegister.email === "" || userRegister.password === "") {     
       setErrorAlert(true)
-      setAlertContent("Please input your data")
+      setErrorContent("Please input your data")
     } else if(userRegister.name.length < 5) {
       setErrorAlert(true)
-      setAlertContent("You need 5 or more characters for your name")
+      setErrorContent("You need 5 or more characters for your name")
     } else if(userRegister.password.length < 8) {
       setErrorAlert(true)
-      setAlertContent("You need 8 or more characters for your password")
+      setErrorContent("You need 8 or more characters for your password")
     } else {
       axios.post(url, {...userRegister})
         .then(result => {
           setListUserRegister([...listUserRegister, result.data])
           setSuccessAlert(true)
+          setSuccessContent("Hey, thanks for registration")
           setErrorAlert(false)
           setTimeout(() => {
             history.push("/")
@@ -57,8 +59,8 @@ const Register = () => {
       <Form onSubmit={handleSubmit}>
         <Col>
           <h1>Inventory - Form Register</h1>
-          {successAlert && <Success />}
-          {errorAlert && <Error alertContent={alertContet}/>}
+          {successAlert && <Success successContent={successContent}/>}
+          {errorAlert && <Error errorContent={errorContent}/>}
           <FormGroup>
             <FormLabel>Name</FormLabel>
             <FormControl 
