@@ -2,11 +2,11 @@ import React from 'react'
 import {Alert} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Error = () => {
+const Error = ({alertContent}) => {
   return (
     <div>
       <Alert variant="danger">
-        Please, input your data
+        {alertContent}
       </Alert>
     </div>
   )

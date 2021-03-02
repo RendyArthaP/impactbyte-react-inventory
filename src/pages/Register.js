@@ -15,6 +15,7 @@ const Register = () => {
   })
   const [successAlert, setSuccessAlert] = useState(false)
   const [errorAlert, setErrorAlert] = useState(false)
+  const [alertContet, setAlertContent] = useState("")
   const [listUserRegister, setListUserRegister] = useState([])
 
   const handleChange = (e) => {
@@ -28,23 +29,28 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const url = "https://6023a95a6bf3e6001766b546.mockapi.io/datauser"
-    axios.post(url, {...userRegister})
-      .then(result => {
-        if(userRegister.name === "" || userRegister.email === "" || userRegister.password === "") {
-          setErrorAlert(true)
-        } else if(userRegister.name.length < 5) {
-          setErrorAlert(true)
-        } else if(userRegister.password.length < 8) {
-          setErrorAlert(true)
-        } else {
+    if(userRegister.name === "" || userRegister.email === "" || userRegister.password === "") {     
+      setErrorAlert(true)
+      setAlertContent("Please input your data")
+    } else if(userRegister.name.length < 5) {
+      setErrorAlert(true)
+      setAlertContent("You need 5 or more characters for your name")
+    } else if(userRegister.password.length < 8) {
+      setErrorAlert(true)
+      setAlertContent("You need 8 or more characters for your password")
+    } else {
+      axios.post(url, {...userRegister})
+        .then(result => {
           setListUserRegister([...listUserRegister, result.data])
           setSuccessAlert(true)
+          setErrorAlert(false)
           setTimeout(() => {
             history.push("/")
           }, 1000);
         }
-      })
+      )
       .catch(err => console.log(err))
+    }
   }
   return (
     <Container>
@@ -52,7 +58,7 @@ const Register = () => {
         <Col>
           <h1>Inventory - Form Register</h1>
           {successAlert && <Success />}
-          {errorAlert && <Error />}
+          {errorAlert && <Error alertContent={alertContet}/>}
           <FormGroup>
             <FormLabel>Name</FormLabel>
             <FormControl 
