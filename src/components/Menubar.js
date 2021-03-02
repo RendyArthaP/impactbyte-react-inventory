@@ -13,20 +13,14 @@ const Menubar = ({setHandleModal}) => {
       <Navbar bg="dark" expand="lg">
         <NavbarBrand>
           <Link to="/home" className="text-white">
-            Inventory 
+            Home 
           </Link>
         </NavbarBrand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <span>
-              <Link to="#" className="mr-2 text-white">About</Link>
-            </span>
-            <span>
-              <Link to="#" className="mr-2 text-white">Gallery</Link>
-            </span>
-            <span>
-              <Link to="#" className="mr-2 text-white">Cart</Link>
+              <Link to="/inventory" className="mr-2 text-white">Inventory</Link>
             </span>
           </Nav>
           {isLoggedin && (
