@@ -1,11 +1,13 @@
 import React from 'react'
 import { Navbar, NavbarBrand, Nav, Button } from 'react-bootstrap'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Menubar = ({setHandleModal}) => {
   const dataUserJSON = localStorage.getItem("user")
   const dataUserObj = JSON.parse(dataUserJSON)
+  const isLoggedin = JSON.parse(localStorage.getItem("isLogin"))
+
   return (
     <div>
       <Navbar bg="dark" expand="lg">
@@ -27,7 +29,9 @@ const Menubar = ({setHandleModal}) => {
               <Link to="#" className="mr-2 text-white">Cart</Link>
             </span>
           </Nav>
-          <span className="mr-3 text-white">Hello, {dataUserObj.name}</span>
+          {isLoggedin && (
+            <span className="mr-3 text-white">Hello, {dataUserObj.name}</span>
+          )}
           <Button 
             variant="outline-danger" 
             onClick={() => setHandleModal(true)}

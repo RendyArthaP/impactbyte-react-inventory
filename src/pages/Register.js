@@ -88,7 +88,11 @@ const Register = () => {
               name="password"
             />
           </FormGroup>
-          <Button variant="primary" type="submit">
+          <Button 
+            variant="primary" 
+            type="submit"
+            className="mr-2"
+          >
             Submit
           </Button>
           <Link to="/">

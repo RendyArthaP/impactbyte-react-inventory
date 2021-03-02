@@ -86,7 +86,11 @@ const Login = () => {
               We'll never share your password with anyone else.
             </FormText>
           </FormGroup>
-          <Button variant="primary" type="submit">
+          <Button 
+            variant="primary" 
+            type="submit"
+            className="mr-2"
+          >
             Submit
           </Button>
           <Link to="/register">
