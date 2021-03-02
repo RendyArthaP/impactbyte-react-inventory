@@ -17,3 +17,4 @@
 4. Run the apps with `npm start`
 
 Thank you
+Deploy link: https://inventory-rendy.netlify.app/
