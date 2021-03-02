@@ -1,12 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Navbar, NavbarBrand, Nav, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ModalItem from './Modal/ModalItem';
 
-const Menubar = ({setHandleModal}) => {
+const Menubar = () => {
+  const history = useHistory()
   const dataUserJSON = localStorage.getItem("user")
   const dataUserObj = JSON.parse(dataUserJSON)
   const isLoggedin = JSON.parse(localStorage.getItem("isLogin"))
+  const [handleModal, setHandleModal] = useState(false)
+
+  if(!isLoggedin) {
+    history.push("/")
+  }
 
   return (
     <div>
@@ -34,6 +41,10 @@ const Menubar = ({setHandleModal}) => {
           </Button>
         </Navbar.Collapse>
       </Navbar>
+      <ModalItem 
+        handleModal={handleModal}
+        setHandleModal={setHandleModal}
+      />
     </div>
   )
 }

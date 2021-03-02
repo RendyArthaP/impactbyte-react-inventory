@@ -11,9 +11,12 @@ const ListInventory = ({itemInventories}) => {
           <Card.Img variant="top" src={inventory.image} />
           <Card.Body>
             <Card.Title>{inventory.nameItem}</Card.Title>
-            <Card.Text>
-              {inventory.stock}
-            </Card.Text>
+            <Row className="ml-0">
+              <span>Stock:</span>
+              <Card.Text>
+                {inventory.stock}
+              </Card.Text>
+            </Row>
           </Card.Body>
         </Card>
       ))}
