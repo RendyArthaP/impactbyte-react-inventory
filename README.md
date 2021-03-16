@@ -2,13 +2,12 @@
 
 ## Project Description:
 1. First time using React-bootstrap
-2. Made a quiz app with React hooks.
-3. Made a reusable component.
-4. Using props to parsing data.
-5. Map the data, and learning to made a dynamic question and answer.
-6. Fetch data with http://mockapi.io/
-7. Use useEffect to fatch data.
-8. Made a simple protected route with local storage
+2. Made a reusable component.
+3. Using props to parsing data.
+4. Map the data, and learning to made a dynamic question and answer.
+5. Fetch data with http://mockapi.io/
+6. Use useEffect to fatch data.
+7. Made a simple protected route with local storage
 
 ## How to run this project:
 1. Clone this repository: `git clone https://github.com/RendyArthaP/impactbyte-react-inventory.git`
